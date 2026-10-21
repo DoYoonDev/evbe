@@ -25,7 +25,8 @@ public class Role extends AbstractEntity {
 	private String description;
 	private Boolean isActive;
 
-    @Column(nullable = false)
+	@Column(name = "\"level\"", nullable = false)
+//    @Column(nullable = false)
     private Integer level = 0;
 
 	@CreatedBy

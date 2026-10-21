@@ -26,7 +26,8 @@ public class AttachFile extends AbstractEntity {
     @Column
     private String sortOrder;
 
-    @Column
+//    @Column
+    @Column(name = "\"size\"")
     private String size;
 
     @Column

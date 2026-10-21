@@ -30,7 +30,8 @@ logging:
     org.hibernate.orm.jdbc.bind: trace
 
 message:
-  path: C:\dev\evolve-framework\evolve-fe\src\locales
+#  path: C:\dev\evolve-framework\evolve-fe\src\locales
+  path: C:/Users/dlwhd/OneDrive/Desktop/ev/evfe/src/locales
 
 security:
   jwt:

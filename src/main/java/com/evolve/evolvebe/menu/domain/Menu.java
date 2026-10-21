@@ -40,6 +40,7 @@ public class Menu extends AbstractEntity {
 
 	private String description;
 
+	@Column(name = "\"level\"")
 	private Integer level;
 
 	@CreatedBy

@@ -77,6 +77,10 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlin:kotlin-reflect"
+
+    // oracle
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+    implementation 'org.flywaydb:flyway-database-oracle:11.1.0'
 }
 
 // swagger

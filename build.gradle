@@ -1,0 +1,102 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id 'com.epages.restdocs-api-spec' version '0.19.4'
+    id 'org.flywaydb.flyway' version '11.1.0'
+}
+
+group = 'com.evolve'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.5.5.Final"
+    annotationProcessor (
+            'org.projectlombok:lombok',
+            'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    )
+
+    // gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
+
+    // restDocs + swagger
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.18.4'
+
+    // flyway
+    implementation 'org.flywaydb:flyway-core:11.1.0'
+    implementation("org.flywaydb:flyway-database-postgresql")
+
+    // spring security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // redisson
+    implementation 'org.redisson:redisson-spring-boot-starter:3.33.0'
+
+    // h2 DB
+    runtimeOnly 'com.h2database:h2'
+
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
+    // aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+}
+
+// swagger
+openapi3 {
+    server = 'http://localhost:8080'
+    title = 'Evolve API'
+    description = 'Evolve API description'
+    version = '1.0.0'
+    format = 'yaml'
+    outputDirectory = "src/main/resources/static/docs"
+}
+
+tasks.named('bootRun') {
+    dependsOn 'openapi3'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    doFirst {
+        delete("build/generated-snippets")
+    }
+    finalizedBy('openapi3')
+}

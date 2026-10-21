@@ -1,0 +1,2731 @@
+openapi: 3.0.1
+info:
+  title: Evolve API
+  description: Evolve API description
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+tags: []
+paths:
+  /api/boards:
+    get:
+      tags:
+      - board
+      operationId: board/get-all
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-boards1922291541"
+              examples:
+                board/get-all:
+                  value: "{\"boardInfos\":[{\"id\":1,\"attachFileGroupId\":null,\"\
+                    title\":\"게시글1\",\"createMemberId\":\"user1\",\"createdAt\":\"\
+                    2025-11-13T17:12:43.372272+09:00\",\"viewCount\":\"0\",\"isPin\"\
+                    :false},{\"id\":2,\"attachFileGroupId\":null,\"title\":\"게시글2\"\
+                    ,\"createMemberId\":\"user1\",\"createdAt\":\"2025-11-13T17:12:43.372272+09:00\"\
+                    ,\"viewCount\":\"5\",\"isPin\":false},{\"id\":3,\"attachFileGroupId\"\
+                    :null,\"title\":\"게시글3\",\"createMemberId\":\"user1\",\"createdAt\"\
+                    :\"2025-11-13T17:12:43.372272+09:00\",\"viewCount\":\"2\",\"isPin\"\
+                    :true},{\"id\":4,\"attachFileGroupId\":null,\"title\":\"게시글4\"\
+                    ,\"createMemberId\":\"user1\",\"createdAt\":\"2025-11-13T17:12:43.372272+09:00\"\
+                    ,\"viewCount\":\"0\",\"isPin\":false},{\"id\":5,\"attachFileGroupId\"\
+                    :null,\"title\":\"게시글5\",\"createMemberId\":\"user1\",\"createdAt\"\
+                    :\"2025-11-13T17:12:43.372272+09:00\",\"viewCount\":\"10\",\"\
+                    isPin\":false},{\"id\":6,\"attachFileGroupId\":null,\"title\"\
+                    :\"게시글6\",\"createMemberId\":\"user1\",\"createdAt\":\"2025-11-13T17:12:43.372272+09:00\"\
+                    ,\"viewCount\":\"2\",\"isPin\":true}]}"
+    post:
+      tags:
+      - board
+      operationId: board/create
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                board/create:
+                  value: "true"
+  /api/codes:
+    get:
+      tags:
+      - code
+      operationId: code/get-codes
+      parameters:
+      - name: page
+        in: query
+        description: 조회할 페이지 번호
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 페이지 크기
+        required: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 정렬 기준
+        required: true
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: 정렬 방향
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes1059631560"
+              examples:
+                code/get-codes:
+                  value: "{\"codeInfos\":{\"content\":[{\"id\":null,\"codeGroup\"\
+                    :null,\"messageId\":null,\"name\":null,\"description\":null,\"\
+                    sortOrder\":0,\"isActive\":false,\"createMemberId\":null,\"updateMemberId\"\
+                    :null},{\"id\":null,\"codeGroup\":null,\"messageId\":null,\"name\"\
+                    :null,\"description\":null,\"sortOrder\":0,\"isActive\":false,\"\
+                    createMemberId\":null,\"updateMemberId\":null}],\"pageable\":{\"\
+                    pageNumber\":0,\"pageSize\":0,\"sort\":null,\"offset\":0,\"unpaged\"\
+                    :false,\"paged\":false},\"totalElements\":20,\"totalPages\":10,\"\
+                    last\":false,\"size\":2,\"number\":0,\"sort\":null,\"numberOfElements\"\
+                    :2,\"first\":true,\"empty\":false}}"
+    post:
+      tags:
+      - code
+      operationId: code/create-code
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-codes1084719924"
+            examples:
+              code/create-code:
+                value: "{\"id\":null,\"groupId\":null,\"messageId\":null,\"name\"\
+                  :null,\"description\":null,\"sortOrder\":null,\"isActive\":null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                code/create-code:
+                  value: "true"
+  /api/members:
+    get:
+      tags:
+      - member
+      operationId: member/get-all
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-members1645578370"
+              examples:
+                member/get-all:
+                  value: "{\"memberInfos\":[{\"id\":\"user1\",\"koName\":\"홍길동\",\"\
+                    enName\":\"Hong Gil Dong\",\"email\":\"hong@example.com\",\"phoneNumber\"\
+                    :\"010-1111-2222\",\"isActive\":true,\"mustChangePassword\":false,\"\
+                    createdAt\":\"2025-11-13T17:13:00.914543+09:00\",\"updatedAt\"\
+                    :\"2025-11-13T17:13:00.914543+09:00\"},{\"id\":\"user2\",\"koName\"\
+                    :\"김철수\",\"enName\":\"Kim Chul Soo\",\"email\":\"chulsoo@example.com\"\
+                    ,\"phoneNumber\":\"010-3333-4444\",\"isActive\":false,\"mustChangePassword\"\
+                    :false,\"createdAt\":\"2025-11-13T17:13:00.914543+09:00\",\"updatedAt\"\
+                    :\"2025-11-13T17:13:00.914543+09:00\"},{\"id\":\"user3\",\"koName\"\
+                    :\"이영희\",\"enName\":\"Lee Young Hee\",\"email\":\"younghee@example.com\"\
+                    ,\"phoneNumber\":\"010-5555-6666\",\"isActive\":true,\"mustChangePassword\"\
+                    :false,\"createdAt\":\"2025-11-13T17:13:00.914543+09:00\",\"updatedAt\"\
+                    :\"2025-11-13T17:13:00.914543+09:00\"}]}"
+  /api/menus:
+    get:
+      tags:
+      - menu
+      operationId: menu/get-menus
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-menus329161475"
+              examples:
+                menu/get-menus:
+                  value: "{\"menuInfos\":[{\"id\":0,\"parentMenuId\":0,\"messageId\"\
+                    :null,\"url\":null,\"name\":null,\"isActive\":false,\"isDelete\"\
+                    :false,\"sortOrder\":0,\"description\":null,\"level\":0,\"createMemberId\"\
+                    :null,\"updateMemberId\":null}]}"
+    post:
+      tags:
+      - menu
+      operationId: menu/create-menu
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-menus-195300800"
+            examples:
+              menu/create-menu:
+                value: "{\"parentMenuId\":null,\"messageId\":\"message.id\",\"url\"\
+                  :\"url\",\"name\":\"name\",\"isActive\":null,\"isDelete\":null,\"\
+                  sortOrder\":null,\"description\":null,\"level\":1}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-menus879881188"
+              examples:
+                menu/create-menu:
+                  value: "{\"menuInfo\":{\"id\":null,\"parentMenuId\":null,\"messageId\"\
+                    :\"message.id\",\"url\":\"url\",\"name\":\"name\",\"isActive\"\
+                    :null,\"isDelete\":null,\"sortOrder\":null,\"description\":null,\"\
+                    level\":1,\"createMemberId\":null,\"updateMemberId\":null}}"
+  /api/messages:
+    get:
+      tags:
+      - message
+      operationId: message/get-messages
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages-94474456"
+              examples:
+                message/get-messages:
+                  value: "{\"messageInfos\":{\"content\":[{\"id\":\"1\",\"koText\"\
+                    :\"관리1\",\"enText\":\"Manage1\",\"isActive\":true,\"createMemberId\"\
+                    :null,\"createdAt\":null,\"updateMemberId\":null,\"updatedAt\"\
+                    :null},{\"id\":\"2\",\"koText\":\"관리2\",\"enText\":\"Manage2\"\
+                    ,\"isActive\":true,\"createMemberId\":null,\"createdAt\":null,\"\
+                    updateMemberId\":null,\"updatedAt\":null}],\"pageable\":{\"pageNumber\"\
+                    :0,\"pageSize\":10,\"sort\":{\"empty\":true,\"sorted\":false,\"\
+                    unsorted\":true},\"offset\":0,\"unpaged\":false,\"paged\":true},\"\
+                    totalElements\":2,\"totalPages\":1,\"last\":true,\"size\":10,\"\
+                    number\":0,\"sort\":{\"empty\":true,\"sorted\":false,\"unsorted\"\
+                    :true},\"numberOfElements\":2,\"first\":true,\"empty\":false}}"
+    post:
+      tags:
+      - message
+      operationId: message/create-message
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-messages1130025011"
+            examples:
+              message/create-message:
+                value: "{\"id\":null,\"koText\":null,\"enText\":null,\"isActive\"\
+                  :false}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                message/create-message:
+                  value: "true"
+  /api/roles:
+    get:
+      tags:
+      - role
+      operationId: role/get-roles
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-roles1658565197"
+              examples:
+                role/get-roles:
+                  value: "{\"roleInfos\":[{\"id\":null,\"name\":null,\"description\"\
+                    :null,\"isActive\":false,\"level\":0},{\"id\":null,\"name\":null,\"\
+                    description\":null,\"isActive\":false,\"level\":0}]}"
+    post:
+      tags:
+      - role
+      operationId: role/create-role
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-roles-1594010409"
+            examples:
+              role/create-role:
+                value: "{\"id\":null,\"name\":null,\"description\":null,\"level\"\
+                  :0,\"isActive\":false}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                role/create-role:
+                  value: "true"
+  /api/auth/login:
+    post:
+      tags:
+      - auth
+      operationId: auth/login
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-auth-login1624282838"
+            examples:
+              auth/login:
+                value: "{\"userId\":\"userId\",\"password\":\"password\"}"
+              auth/login-fail:
+                value: "{\"userId\":null,\"password\":null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-auth-login-996144396"
+              examples:
+                auth/login:
+                  value: "{\"accessToken\":\"access-token\"}"
+        "400":
+          description: "400"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id1906574377"
+              examples:
+                auth/login-fail:
+                  value: "{\"status\":400,\"error\":\"Bad Request\",\"code\":\"USER_OR_PASSWORD_NOT_MATCH\"\
+                    ,\"message\":\"아이디 또는 비밀번호가 일치하지 않습니다.\"}"
+  /api/boards/page:
+    get:
+      tags:
+      - board
+      operationId: board/get-boards-paged
+      parameters:
+      - name: column
+        in: query
+        description: "검색 기준 컬럼명 (예: title, createMemberId)"
+        required: true
+        schema:
+          type: string
+      - name: keyword
+        in: query
+        description: 검색 키워드
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: 페이지 번호 (0부터 시작)
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 한 페이지당 게시글 개수
+        required: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "정렬 기준 (예: createdAt,desc)"
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-boards-page1709009533"
+              examples:
+                board/get-boards-paged:
+                  value: "{\"boardInfos\":[{\"id\":null,\"attachFileGroupId\":null,\"\
+                    title\":\"게시글1\",\"createMemberId\":\"user1\",\"createdAt\":\"\
+                    2025-11-13T17:12:43.4295886+09:00\",\"viewCount\":\"0\",\"isPin\"\
+                    :false},{\"id\":null,\"attachFileGroupId\":null,\"title\":\"게시\
+                    글2\",\"createMemberId\":\"user1\",\"createdAt\":\"2025-11-13T17:12:43.4295886+09:00\"\
+                    ,\"viewCount\":\"0\",\"isPin\":false},{\"id\":null,\"attachFileGroupId\"\
+                    :null,\"title\":\"게시글3\",\"createMemberId\":\"user2\",\"createdAt\"\
+                    :\"2025-11-13T17:12:43.4295886+09:00\",\"viewCount\":\"0\",\"\
+                    isPin\":false},{\"id\":null,\"attachFileGroupId\":null,\"title\"\
+                    :\"게시글4\",\"createMemberId\":\"user2\",\"createdAt\":\"2025-11-13T17:12:43.4295886+09:00\"\
+                    ,\"viewCount\":\"5\",\"isPin\":false},{\"id\":null,\"attachFileGroupId\"\
+                    :null,\"title\":\"게시글5\",\"createMemberId\":\"user3\",\"createdAt\"\
+                    :\"2025-11-13T17:12:43.4295886+09:00\",\"viewCount\":\"4\",\"\
+                    isPin\":false},{\"id\":null,\"attachFileGroupId\":null,\"title\"\
+                    :\"게시글6\",\"createMemberId\":\"user3\",\"createdAt\":\"2025-11-13T17:12:43.4295886+09:00\"\
+                    ,\"viewCount\":\"0\",\"isPin\":false}],\"page\":0,\"size\":10,\"\
+                    totalElements\":6,\"totalPages\":1}"
+  /api/boards/{id}:
+    get:
+      tags:
+      - board
+      operationId: board/get-board
+      parameters:
+      - name: id
+        in: path
+        description: 게시글 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-boards-id1054462394"
+              examples:
+                board/get-board:
+                  value: "{\"id\":1,\"attachFileGroupId\":1,\"content\":\"테스트 게시글\
+                    \ 내용입니다.\",\"title\":\"게시글1\",\"createMemberId\":\"user1\",\"\
+                    createdAt\":\"2025-11-13T17:12:43.0844827+09:00\",\"updatedAt\"\
+                    :\"2025-11-13T17:12:43.0844827+09:00\",\"viewCount\":0,\"isPin\"\
+                    :false,\"attachFiles\":[{\"id\":1,\"name\":\"test.txt\",\"saveName\"\
+                    :\"test_123.txt\",\"path\":\"/upload/files\"},{\"id\":1,\"name\"\
+                    :\"image.png\",\"saveName\":\"img_456.png\",\"path\":\"/upload/images\"\
+                    }]}"
+    put:
+      tags:
+      - board
+      operationId: board/update-board
+      parameters:
+      - name: id
+        in: path
+        description: 게시글 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-boards-id1551527500"
+              examples:
+                board/update-board:
+                  value: "{\"id\":1,\"attachFileGroupId\":null,\"content\":\"수정된 게\
+                    시글 내용입니다.\",\"title\":\"게시글1 수정\",\"createMemberId\":null,\"updateMemberId\"\
+                    :\"user1\",\"createdAt\":null,\"updatedAt\":null,\"viewCount\"\
+                    :0,\"isPin\":false}"
+    delete:
+      tags:
+      - board
+      operationId: board/delete
+      parameters:
+      - name: id
+        in: path
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: "204"
+  /api/codes/code-group:
+    get:
+      tags:
+      - code
+      operationId: code/get-group-codes
+      parameters:
+      - name: page
+        in: query
+        description: 조회할 페이지 번호
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 페이지 크기
+        required: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 정렬 기준
+        required: true
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: 정렬 방향
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-1429776464"
+              examples:
+                code/get-group-codes:
+                  value: "{\"codeInfos\":{\"content\":[{\"id\":null,\"name\":null,\"\
+                    description\":null,\"isActive\":false,\"createMemberId\":null,\"\
+                    updateMemberId\":null},{\"id\":null,\"name\":null,\"description\"\
+                    :null,\"isActive\":false,\"createMemberId\":null,\"updateMemberId\"\
+                    :null}],\"pageable\":{\"pageNumber\":0,\"pageSize\":0,\"sort\"\
+                    :null,\"offset\":0,\"unpaged\":false,\"paged\":false},\"totalElements\"\
+                    :20,\"totalPages\":10,\"last\":false,\"size\":2,\"number\":0,\"\
+                    sort\":null,\"numberOfElements\":2,\"first\":true,\"empty\":false}}"
+    post:
+      tags:
+      - code
+      operationId: code/create-code-group
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-codes-code-group-1629954168"
+            examples:
+              code/create-code-group:
+                value: "{\"id\":null,\"name\":null,\"description\":null,\"isActive\"\
+                  :null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                code/create-code-group:
+                  value: "true"
+  /api/codes/{id}:
+    get:
+      tags:
+      - code
+      operationId: code/get-code
+      parameters:
+      - name: id
+        in: path
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-id-1625036837"
+              examples:
+                code/get-code:
+                  value: "{\"codeInfo\":{\"id\":null,\"codeGroup\":null,\"messageId\"\
+                    :null,\"name\":null,\"description\":null,\"sortOrder\":0,\"isActive\"\
+                    :false,\"createMemberId\":null,\"updateMemberId\":null}}"
+        "404":
+          description: "404"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id1906574377"
+              examples:
+                code/get-code-fail:
+                  value: "{\"status\":404,\"error\":\"Not Found\",\"code\":\"NOT_FOUND_CODE\"\
+                    ,\"message\":\"해당 코드를 찾을 수 없습니다.\"}"
+    put:
+      tags:
+      - code
+      operationId: code/update-code
+      parameters:
+      - name: id
+        in: path
+        description: 업데이트할 코드 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-codes-id1537925074"
+            examples:
+              code/update-code:
+                value: "{\"name\":null,\"description\":null,\"sortOrder\":null,\"\
+                  isActive\":null}"
+              code/update-code-fail:
+                value: "{\"name\":null,\"description\":null,\"sortOrder\":null,\"\
+                  isActive\":null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                code/update-code:
+                  value: "true"
+        "404":
+          description: "404"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id1906574377"
+              examples:
+                code/update-code-fail:
+                  value: "{\"status\":404,\"error\":\"Not Found\",\"code\":\"NOT_FOUND_CODE\"\
+                    ,\"message\":\"해당 코드를 찾을 수 없습니다.\"}"
+    delete:
+      tags:
+      - code
+      operationId: code/delete-code
+      parameters:
+      - name: id
+        in: path
+        description: 조회할 코드 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                code/delete-code:
+                  value: "true"
+  /api/logs/accesss:
+    get:
+      tags:
+      - logAccess
+      operationId: log/get-log-accesss
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-logs-accesss-1618614299"
+              examples:
+                log/get-log-accesss:
+                  value: "{\"logAccessInfos\":{\"content\":[{\"id\":null,\"memberId\"\
+                    :null,\"requestUrl\":null,\"requestMethod\":null,\"requestPayload\"\
+                    :null,\"requestIp\":null,\"responseStatus\":0,\"responseBody\"\
+                    :null,\"createdAt\":null},{\"id\":null,\"memberId\":null,\"requestUrl\"\
+                    :null,\"requestMethod\":null,\"requestPayload\":null,\"requestIp\"\
+                    :null,\"responseStatus\":0,\"responseBody\":null,\"createdAt\"\
+                    :null}],\"pageable\":{\"pageNumber\":0,\"pageSize\":0,\"sort\"\
+                    :null,\"offset\":0,\"unpaged\":false,\"paged\":false},\"totalElements\"\
+                    :20,\"totalPages\":10,\"last\":false,\"size\":2,\"number\":0,\"\
+                    sort\":null,\"numberOfElements\":2,\"first\":true,\"empty\":false}}"
+  /api/logs/logins:
+    get:
+      tags:
+      - logLogin
+      operationId: log/get-log-logins
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-logs-logins-380787922"
+              examples:
+                log/get-log-logins:
+                  value: "{\"logLoginInfos\":{\"content\":[{\"id\":\"1\",\"memberId\"\
+                    :\"TestUser1\",\"accessIp\":\"127.0.0.1\",\"success\":true,\"\
+                    createdAt\":\"2025-11-13T17:12:51.8268175+09:00\"},{\"id\":\"\
+                    2\",\"memberId\":\"TestUser2\",\"accessIp\":\"127.0.0.1\",\"success\"\
+                    :true,\"createdAt\":\"2025-11-13T17:12:51.8268175+09:00\"}],\"\
+                    pageable\":{\"pageNumber\":0,\"pageSize\":10,\"sort\":{\"empty\"\
+                    :false,\"sorted\":true,\"unsorted\":false},\"offset\":0,\"unpaged\"\
+                    :false,\"paged\":true},\"totalElements\":2,\"totalPages\":1,\"\
+                    last\":true,\"size\":10,\"number\":0,\"sort\":{\"empty\":false,\"\
+                    sorted\":true,\"unsorted\":false},\"numberOfElements\":2,\"first\"\
+                    :true,\"empty\":false}}"
+  /api/members/create:
+    post:
+      tags:
+      - member
+      operationId: member/create
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-members-create57399075"
+            examples:
+              member/create:
+                value: "{\"id\":\"user1\",\"koName\":\"홍길동\",\"enName\":\"Hong\",\"\
+                  email\":\"test@test.com\",\"phoneNumber\":\"010-1234-1234\",\"password\"\
+                  :\"pw\",\"isActive\":true,\"termsAgreed\":{\"service\":true,\"privacy\"\
+                  :true},\"tosId\":\"100\",\"topId\":\"200\"}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                member/create:
+                  value: "true"
+  /api/members/page:
+    get:
+      tags:
+      - member
+      operationId: member/get-page
+      parameters:
+      - name: column
+        in: query
+        description: 조회할 항목
+        required: false
+        schema:
+          type: string
+      - name: keyword
+        in: query
+        description: 조회 키워드
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: 페이지
+        required: false
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 페이지 크기
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 정렬
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-members-page124482708"
+              examples:
+                member/get-page:
+                  value: "{\"memberInfos\":{\"content\":[{\"id\":\"user1\",\"koName\"\
+                    :\"홍길동\",\"enName\":\"Hong Gil Dong\",\"email\":\"hong@example.com\"\
+                    ,\"phoneNumber\":\"010-1111-2222\",\"isActive\":true,\"mustChangePassword\"\
+                    :false,\"createdAt\":\"2025-11-13T17:13:00.9528152+09:00\",\"\
+                    updatedAt\":\"2025-11-13T17:13:00.9528152+09:00\"},{\"id\":\"\
+                    user2\",\"koName\":\"김철수\",\"enName\":\"Kim Chul Soo\",\"email\"\
+                    :\"chulsoo@example.com\",\"phoneNumber\":\"010-3333-4444\",\"\
+                    isActive\":false,\"mustChangePassword\":false,\"createdAt\":\"\
+                    2025-11-13T17:13:00.9528152+09:00\",\"updatedAt\":\"2025-11-13T17:13:00.9528152+09:00\"\
+                    },{\"id\":\"user3\",\"koName\":\"이영희\",\"enName\":\"Lee Young\
+                    \ Hee\",\"email\":\"younghee@example.com\",\"phoneNumber\":\"\
+                    010-5555-6666\",\"isActive\":true,\"mustChangePassword\":false,\"\
+                    createdAt\":\"2025-11-13T17:13:00.9528152+09:00\",\"updatedAt\"\
+                    :\"2025-11-13T17:13:00.9528152+09:00\"}],\"pageable\":{\"pageNumber\"\
+                    :0,\"pageSize\":10,\"sort\":{\"empty\":false,\"sorted\":true,\"\
+                    unsorted\":false},\"offset\":0,\"unpaged\":false,\"paged\":true},\"\
+                    totalElements\":3,\"totalPages\":1,\"last\":true,\"size\":10,\"\
+                    number\":0,\"sort\":{\"empty\":false,\"sorted\":true,\"unsorted\"\
+                    :false},\"numberOfElements\":3,\"first\":true,\"empty\":false}}"
+  /api/members/{id}:
+    get:
+      tags:
+      - member
+      operationId: member/get-detail
+      parameters:
+      - name: id
+        in: path
+        description: 사용자 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-members-id295864624"
+              examples:
+                member/get-detail:
+                  value: "{\"id\":\"user1\",\"koName\":\"홍길동\",\"enName\":\"Hong\"\
+                    ,\"email\":\"user1@example.com\",\"phoneNumber\":\"010-3333-4444\"\
+                    ,\"isActive\":true,\"mustChangePassword\":false,\"createdAt\"\
+                    :\"2025-11-13T17:13:00.5526142+09:00\",\"updatedAt\":\"2025-11-13T17:13:00.5526142+09:00\"\
+                    }"
+    put:
+      tags:
+      - member
+      operationId: member/update
+      parameters:
+      - name: id
+        in: path
+        description: 사용자 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-members-id-2084872836"
+            examples:
+              member/update:
+                value: "{\"koName\":\"김철수\",\"enName\":\"Kim Chul Soo\",\"email\"\
+                  :\"chulsoo@example.com\",\"phoneNumber\":\"010-0000-0000\",\"isActive\"\
+                  :true}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-members-id856176769"
+              examples:
+                member/update:
+                  value: "{\"id\":\"user1\",\"koName\":\"김철수\",\"enName\":\"Kim Chul\
+                    \ Soo\",\"email\":\"chulsoo@example.com\",\"phoneNumber\":\"010-0000-0000\"\
+                    ,\"isActive\":true,\"createdAt\":\"2025-11-13T17:13:00.6093979+09:00\"\
+                    ,\"updatedAt\":\"2025-11-13T17:13:00.6093979+09:00\"}"
+    delete:
+      tags:
+      - member
+      operationId: member/delete
+      parameters:
+      - name: id
+        in: path
+        description: 삭제할 사용자 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: "204"
+  /api/menus/position:
+    put:
+      tags:
+      - menu
+      operationId: menu/update-menu-position
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-menus-position1859899356"
+            examples:
+              menu/update-menu-position:
+                value: "{\"level1\":[],\"level2\":{},\"level3\":{}}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                menu/update-menu-position:
+                  value: "true"
+  /api/menus/{id}:
+    get:
+      tags:
+      - menu
+      operationId: menu/get-menu
+      parameters:
+      - name: id
+        in: path
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-menus-id-861080333"
+              examples:
+                menu/get-menu:
+                  value: "{\"menuInfo\":{\"id\":0,\"parentMenuId\":0,\"messageId\"\
+                    :null,\"url\":null,\"name\":null,\"isActive\":false,\"isDelete\"\
+                    :false,\"sortOrder\":0,\"description\":null,\"level\":0,\"createMemberId\"\
+                    :null,\"updateMemberId\":null}}"
+    put:
+      tags:
+      - menu
+      operationId: menu/update-menu
+      parameters:
+      - name: id
+        in: path
+        description: 메뉴 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-menus-id-1828412774"
+            examples:
+              menu/update-menu:
+                value: "{\"messageId\":null,\"url\":null,\"name\":null,\"isActive\"\
+                  :false,\"description\":null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                menu/update-menu:
+                  value: "true"
+    delete:
+      tags:
+      - menu
+      operationId: menu/delete-menu
+      parameters:
+      - name: id
+        in: path
+        description: 메뉴 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                menu/delete-menu:
+                  value: "true"
+  /api/messages/{id}:
+    get:
+      tags:
+      - message
+      operationId: message/get-message
+      parameters:
+      - name: id
+        in: path
+        description: 메시지 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages-id639141226"
+              examples:
+                message/get-message:
+                  value: "{\"messageInfo\":{\"id\":\"COM.MSG.HELLO\",\"koText\":null,\"\
+                    enText\":null,\"isActive\":null,\"createMemberId\":null,\"createdAt\"\
+                    :null,\"updateMemberId\":null,\"updatedAt\":null}}"
+    put:
+      tags:
+      - message
+      operationId: message/update-message
+      parameters:
+      - name: id
+        in: path
+        description: 메시지 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-messages1130025011"
+            examples:
+              message/update-message:
+                value: "{\"id\":null,\"koText\":null,\"enText\":null,\"isActive\"\
+                  :false}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                message/update-message:
+                  value: "true"
+    delete:
+      tags:
+      - message
+      operationId: message/delete-message
+      parameters:
+      - name: id
+        in: path
+        description: 메시지 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                message/delete-message:
+                  value: "true"
+  /api/roles/{id}:
+    get:
+      tags:
+      - role
+      operationId: role/get-role
+      parameters:
+      - name: id
+        in: path
+        description: 역할 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-roles-id-1204452080"
+              examples:
+                role/get-role:
+                  value: "{\"roleInfo\":{\"id\":null,\"name\":null,\"description\"\
+                    :null,\"isActive\":false,\"level\":0}}"
+    put:
+      tags:
+      - role
+      operationId: role/update-role
+      parameters:
+      - name: id
+        in: path
+        description: 역할 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-roles-id1828805120"
+            examples:
+              role/update-role:
+                value: "{\"name\":null,\"description\":null,\"level\":null,\"isActive\"\
+                  :null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                role/update-role:
+                  value: "true"
+    delete:
+      tags:
+      - role
+      operationId: role/delete-role
+      parameters:
+      - name: id
+        in: path
+        description: 역할 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                role/delete-role:
+                  value: "true"
+  /api/codes/code-group/{id}:
+    get:
+      tags:
+      - code
+      operationId: code/get-code-group
+      parameters:
+      - name: id
+        in: path
+        description: 조회할 코드 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id699755209"
+              examples:
+                code/get-code-group:
+                  value: "{\"codeInfo\":{\"id\":null,\"name\":null,\"description\"\
+                    :null,\"isActive\":false,\"createMemberId\":null,\"updateMemberId\"\
+                    :null}}"
+        "404":
+          description: "404"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id1906574377"
+              examples:
+                code/get-code-group-fail:
+                  value: "{\"status\":404,\"error\":\"Not Found\",\"code\":\"NOT_FOUND_CODE\"\
+                    ,\"message\":\"해당 코드를 찾을 수 없습니다.\"}"
+    put:
+      tags:
+      - code
+      operationId: code/update-code-group
+      parameters:
+      - name: id
+        in: path
+        description: 조회할 코드 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-codes-code-group-id-1530498498"
+            examples:
+              code/update-code-group:
+                value: "{\"name\":null,\"description\":null,\"isActive\":null}"
+              code/update-code-group-fail:
+                value: "{\"name\":null,\"description\":null,\"isActive\":null}"
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                code/update-code-group:
+                  value: "true"
+        "404":
+          description: "404"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id1906574377"
+              examples:
+                code/update-code-group-fail:
+                  value: "{\"status\":404,\"error\":\"Not Found\",\"code\":\"NOT_FOUND_CODE\"\
+                    ,\"message\":\"해당 코드를 찾을 수 없습니다.\"}"
+  /api/members/search/{id}:
+    get:
+      tags:
+      - member
+      operationId: member/search-like
+      parameters:
+      - name: id
+        in: path
+        description: 검색할 ID 패턴
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                member/search-like:
+                  value: "{\"memberInfos\":[{\"id\":\"user1\",\"koName\":\"홍길동\",\"\
+                    enName\":\"Hong Gil Dong\",\"email\":\"hong@example.com\",\"phoneNumber\"\
+                    :\"010-1111-2222\",\"isActive\":true,\"mustChangePassword\":null,\"\
+                    createdAt\":\"2025-11-13T17:13:00.7614065+09:00\",\"updatedAt\"\
+                    :\"2025-11-13T17:13:00.7614065+09:00\"}]}"
+  /api/members/updatePw/{id}:
+    put:
+      tags:
+      - member
+      operationId: member/update-password
+      parameters:
+      - name: id
+        in: path
+        description: 사용자 ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: "#/components/schemas/api-members-updatePw-id1300906576"
+            examples:
+              member/update-password:
+                value: "{\"currentPw\":\"oldPw\",\"newPw\":\"newPw\"}"
+      responses:
+        "204":
+          description: "204"
+  /api/messages/translated/deploy-all:
+    get:
+      tags:
+      - message
+      operationId: message/deploy-translated-messages-all
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                message/deploy-translated-messages-all:
+                  value: "true"
+  /api/codes/code-group/{codeGroupId}/codes:
+    get:
+      tags:
+      - code
+      operationId: code/get-codes-by-code-group
+      parameters:
+      - name: codeGroupId
+        in: path
+        description: 조회할 코드 그룹 ID
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: 조회할 페이지 번호
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: 페이지 크기
+        required: true
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 정렬 기준
+        required: true
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: 정렬 방향
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes1059631560"
+              examples:
+                code/get-codes-by-code-group:
+                  value: "{\"codeInfos\":{\"content\":[{\"id\":null,\"codeGroup\"\
+                    :null,\"messageId\":null,\"name\":null,\"description\":null,\"\
+                    sortOrder\":0,\"isActive\":false,\"createMemberId\":null,\"updateMemberId\"\
+                    :null},{\"id\":null,\"codeGroup\":null,\"messageId\":null,\"name\"\
+                    :null,\"description\":null,\"sortOrder\":0,\"isActive\":false,\"\
+                    createMemberId\":null,\"updateMemberId\":null}],\"pageable\":{\"\
+                    pageNumber\":0,\"pageSize\":0,\"sort\":null,\"offset\":0,\"unpaged\"\
+                    :false,\"paged\":false},\"totalElements\":20,\"totalPages\":10,\"\
+                    last\":false,\"size\":2,\"number\":0,\"sort\":null,\"numberOfElements\"\
+                    :2,\"first\":true,\"empty\":false}}"
+        "404":
+          description: "404"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-codes-code-group-id1906574377"
+              examples:
+                code/get-codes-by-code-group-fail:
+                  value: "{\"status\":404,\"error\":\"Not Found\",\"code\":\"NOT_FOUND_CODE_GROUP\"\
+                    ,\"message\":\"해당 그룹 코드를 찾을 수 없습니다.\"}"
+  /api/members/{id}/password/reset:
+    post:
+      tags:
+      - member
+      operationId: member/reset-password
+      parameters:
+      - name: id
+        in: path
+        description: 초기화 대상 사용자 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: "204"
+  /api/roles/{id}/members/{memberId}:
+    post:
+      tags:
+      - role
+      operationId: role/add-member-to-role
+      parameters:
+      - name: id
+        in: path
+        description: 역할 ID
+        required: true
+        schema:
+          type: string
+      - name: memberId
+        in: path
+        description: 멤버 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                role/add-member-to-role:
+                  value: "true"
+    delete:
+      tags:
+      - role
+      operationId: role/delete-member-from-role
+      parameters:
+      - name: id
+        in: path
+        description: 역할 ID
+        required: true
+        schema:
+          type: string
+      - name: memberId
+        in: path
+        description: 멤버 ID
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "200"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/api-messages486549215"
+              examples:
+                role/delete-member-from-role:
+                  value: "true"
+components:
+  schemas:
+    api-roles-id1828805120:
+      required:
+      - description
+      - isActive
+      - level
+      - name
+      type: object
+      properties: {}
+    api-boards1922291541:
+      required:
+      - boardInfos
+      type: object
+      properties:
+        boardInfos:
+          type: array
+          description: 게시글 요약 목록
+          items:
+            required:
+            - attachFileGroupId
+            - createMemberId
+            - createdAt
+            - id
+            - isPin
+            - title
+            - viewCount
+            type: object
+            properties:
+              createdAt:
+                type: string
+                description: 작성일
+              isPin:
+                type: boolean
+                description: 상단 고정 여부
+              createMemberId:
+                type: string
+                description: 작성자
+              viewCount:
+                type: string
+                description: 조회수
+              id:
+                type: number
+                description: 게시글 ID
+              title:
+                type: string
+                description: 제목
+    api-auth-login1624282838:
+      required:
+      - password
+      - userId
+      type: object
+      properties:
+        password:
+          description: 사용자 비밀번호
+          oneOf:
+          - null
+          - type: string
+        userId:
+          description: 사용자 이름
+          oneOf:
+          - null
+          - type: string
+    api-menus-position1859899356:
+      required:
+      - level1
+      - level2
+      - level3
+      type: object
+      properties:
+        level1:
+          type: array
+          description: 1레벨 메뉴 ID 리스트
+          items:
+            oneOf:
+            - type: object
+            - type: boolean
+            - type: string
+            - type: number
+        level3:
+          type: object
+          description: 3레벨 메뉴 ID 리스트
+        level2:
+          type: object
+          description: 2레벨 메뉴 ID 리스트
+    api-members-id-2084872836:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          description: 휴대폰 번호
+          nullable: true
+        enName:
+          type: string
+          description: 이름(영어)
+          nullable: true
+        koName:
+          type: string
+          description: 이름(한글)
+          nullable: true
+        isActive:
+          type: boolean
+          description: 활성 여부
+          nullable: true
+        email:
+          type: string
+          description: 이메일
+          nullable: true
+    api-members-create57399075:
+      required:
+      - email
+      - enName
+      - id
+      - isActive
+      - koName
+      - password
+      - phoneNumber
+      - topId
+      - tosId
+      type: object
+      properties:
+        password:
+          type: string
+          description: 비밀번호
+        termsAgreed:
+          type: object
+          properties:
+            service:
+              type: boolean
+              description: 서비스 약관 동의 여부
+              nullable: true
+            privacy:
+              type: boolean
+              description: 개인정보 처리방침 동의 여부
+              nullable: true
+        phoneNumber:
+          type: string
+          description: 휴대폰 번호
+        tosId:
+          type: string
+          description: 서비스 약관 ID
+        topId:
+          type: string
+          description: 개인정보 처리방침 ID
+        enName:
+          type: string
+          description: 이름(영어)
+        koName:
+          type: string
+          description: 이름(한글)
+        id:
+          type: string
+          description: 사용자 ID
+        isActive:
+          type: boolean
+          description: 활성 여부
+        email:
+          type: string
+          description: 이메일
+    api-members-id856176769:
+      required:
+      - email
+      - enName
+      - id
+      - isActive
+      - koName
+      - phoneNumber
+      type: object
+      properties:
+        createdAt:
+          type: string
+          description: 생성일
+          nullable: true
+        phoneNumber:
+          type: string
+          description: 휴대폰 번호
+        enName:
+          type: string
+          description: 이름(영어)
+        koName:
+          type: string
+          description: 이름(한글)
+        id:
+          type: string
+          description: 사용자 ID
+        isActive:
+          type: boolean
+          description: 활성 여부
+        email:
+          type: string
+          description: 이메일
+        updatedAt:
+          type: string
+          description: 수정일
+          nullable: true
+    api-codes-code-group-id1906574377:
+      required:
+      - code
+      - error
+      - message
+      - status
+      type: object
+      properties:
+        code:
+          type: string
+          description: 커스텀 에러 코드
+        message:
+          type: string
+          description: 커스텀 에러 메시지
+        error:
+          type: string
+          description: HTTP 오류 메시지
+        status:
+          type: number
+          description: HTTP 상태 코드
+    api-codes-code-group-1629954168:
+      required:
+      - description
+      - id
+      - isActive
+      - name
+      type: object
+      properties: {}
+    api-members-id295864624:
+      required:
+      - createdAt
+      - enName
+      - id
+      - isActive
+      - koName
+      - mustChangePassword
+      - updatedAt
+      type: object
+      properties:
+        createdAt:
+          type: string
+          description: 생성일
+        phoneNumber:
+          type: string
+          description: 휴대폰 번호
+          nullable: true
+        enName:
+          type: string
+          description: 이름(영어)
+        koName:
+          type: string
+          description: 이름(한글)
+        mustChangePassword:
+          type: boolean
+          description: 비밀번호 초기화 여부
+        id:
+          type: string
+          description: 사용자 ID
+        isActive:
+          type: boolean
+          description: 활성 여부
+        email:
+          type: string
+          description: 이메일
+          nullable: true
+        updatedAt:
+          type: string
+          description: 최종 수정일
+    api-codes1084719924:
+      required:
+      - description
+      - groupId
+      - id
+      - isActive
+      - messageId
+      - name
+      - sortOrder
+      type: object
+      properties: {}
+    api-auth-login-996144396:
+      required:
+      - accessToken
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: 액세스 토큰
+    api-menus879881188:
+      type: object
+      properties:
+        menuInfo:
+          required:
+          - createMemberId
+          - description
+          - id
+          - isActive
+          - isDelete
+          - level
+          - messageId
+          - name
+          - parentMenuId
+          - sortOrder
+          - updateMemberId
+          - url
+          type: object
+          properties:
+            level:
+              type: number
+              description: 메뉴 레벨
+            name:
+              type: string
+              description: 메뉴 이름
+            messageId:
+              type: string
+              description: 메시지 ID
+            url:
+              type: string
+              description: 메뉴 url
+    api-roles1658565197:
+      required:
+      - roleInfos
+      type: object
+      properties:
+        roleInfos:
+          type: array
+          description: 역할 목록
+          items:
+            required:
+            - description
+            - id
+            - isActive
+            - level
+            - name
+            type: object
+            properties:
+              level:
+                type: number
+                description: 역할 레벨
+              isActive:
+                type: boolean
+                description: 활성화 여부
+    api-members1645578370:
+      required:
+      - memberInfos
+      type: object
+      properties:
+        memberInfos:
+          type: array
+          description: 회원 요약 목록
+          items:
+            required:
+            - id
+            type: object
+            properties:
+              createdAt:
+                type: string
+                description: 생성일
+                nullable: true
+              phoneNumber:
+                type: string
+                description: 전화번호
+                nullable: true
+              enName:
+                type: string
+                description: 영문 이름
+                nullable: true
+              koName:
+                type: string
+                description: 한글 이름
+                nullable: true
+              mustChangePassword:
+                type: boolean
+                description: 최초 로그인 비밀번호 변경 필요
+                nullable: true
+              id:
+                type: string
+                description: 사용자 ID
+              isActive:
+                type: boolean
+                description: 활성 여부
+                nullable: true
+              email:
+                type: string
+                description: 이메일
+                nullable: true
+              updatedAt:
+                type: string
+                description: 수정일
+                nullable: true
+    api-members-updatePw-id1300906576:
+      required:
+      - currentPw
+      - newPw
+      type: object
+      properties:
+        currentPw:
+          type: string
+          description: 현재 비밀번호
+        newPw:
+          type: string
+          description: 새 비밀번호
+    api-menus-195300800:
+      required:
+      - description
+      - isActive
+      - isDelete
+      - level
+      - messageId
+      - name
+      - parentMenuId
+      - sortOrder
+      - url
+      type: object
+      properties:
+        level:
+          type: number
+          description: 메뉴 레벨
+        name:
+          type: string
+          description: 메뉴 이름
+        messageId:
+          type: string
+          description: 메시지 ID
+        url:
+          type: string
+          description: 메뉴 url
+    api-menus329161475:
+      required:
+      - menuInfos
+      type: object
+      properties:
+        menuInfos:
+          type: array
+          description: 메뉴 정보
+          items:
+            required:
+            - createMemberId
+            - description
+            - id
+            - isActive
+            - isDelete
+            - level
+            - messageId
+            - name
+            - parentMenuId
+            - sortOrder
+            - updateMemberId
+            - url
+            type: object
+            properties:
+              parentMenuId:
+                type: number
+                description: 싱위메뉴 ID
+              level:
+                type: number
+                description: 메뉴 레벨
+              isDelete:
+                type: boolean
+                description: 삭제여부
+              sortOrder:
+                type: number
+                description: 정렬
+              id:
+                type: number
+                description: 메뉴 ID
+              isActive:
+                type: boolean
+                description: 생성여부
+    api-menus-id-1828412774:
+      required:
+      - description
+      - isActive
+      - messageId
+      - name
+      - url
+      type: object
+      properties:
+        isActive:
+          type: boolean
+          description: 생성여부
+    api-menus-id-861080333:
+      type: object
+      properties:
+        menuInfo:
+          required:
+          - createMemberId
+          - description
+          - id
+          - isActive
+          - isDelete
+          - level
+          - messageId
+          - name
+          - parentMenuId
+          - sortOrder
+          - updateMemberId
+          - url
+          type: object
+          properties:
+            parentMenuId:
+              type: number
+              description: 싱위메뉴 ID
+            level:
+              type: number
+              description: 메뉴 레벨
+            isDelete:
+              type: boolean
+              description: 삭제여부
+            sortOrder:
+              type: number
+              description: 정렬
+            id:
+              type: number
+              description: 메뉴 ID
+            isActive:
+              type: boolean
+              description: 생성여부
+    api-messages486549215:
+      type: object
+    api-codes1059631560:
+      type: object
+      properties:
+        codeInfos:
+          required:
+          - content
+          - empty
+          - first
+          - last
+          - number
+          - numberOfElements
+          - pageable
+          - size
+          - sort
+          - totalElements
+          - totalPages
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 번호
+            last:
+              type: boolean
+              description: 마지막 페이지 여부
+            numberOfElements:
+              type: number
+              description: 현재 페이지의 데이터 수
+            size:
+              type: number
+              description: 현재 페이지 크기
+            totalPages:
+              type: number
+              description: 총 페이지 수
+            pageable:
+              required:
+              - offset
+              - pageNumber
+              - pageSize
+              - paged
+              - sort
+              - unpaged
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 페이징 여부
+                pageNumber:
+                  type: number
+                  description: 현재 페이지 번호
+                offset:
+                  type: number
+                  description: 현재 페이지의 시작 위치
+                pageSize:
+                  type: number
+                  description: 페이지 크기
+                unpaged:
+                  type: boolean
+                  description: 페이징 미적용 여부
+              description: 페이징 정보
+            first:
+              type: boolean
+              description: 첫 번째 페이지 여부
+            content:
+              type: array
+              description: 코드 목록
+              items:
+                required:
+                - codeGroup
+                - createMemberId
+                - description
+                - id
+                - isActive
+                - messageId
+                - name
+                - sortOrder
+                - updateMemberId
+                type: object
+                properties:
+                  sortOrder:
+                    type: number
+                    description: 정렬 순서
+                  isActive:
+                    type: boolean
+                    description: 활성화 여부
+            empty:
+              type: boolean
+              description: 페이지가 비어 있는지 여부
+            totalElements:
+              type: number
+              description: 총 데이터 수
+    api-boards-page1709009533:
+      required:
+      - boardInfos
+      - page
+      - size
+      - totalElements
+      - totalPages
+      type: object
+      properties:
+        boardInfos:
+          type: array
+          description: 게시글 목록
+          items:
+            required:
+            - createMemberId
+            - createdAt
+            - isPin
+            - title
+            - viewCount
+            type: object
+            properties:
+              createdAt:
+                type: string
+                description: 작성일시
+              isPin:
+                type: boolean
+                description: 상단 고정 여부
+              createMemberId:
+                type: string
+                description: 작성자
+              viewCount:
+                type: string
+                description: 조회수
+              title:
+                type: string
+                description: 게시글 제목
+        size:
+          type: number
+          description: 한 페이지당 게시글 수
+        totalPages:
+          type: number
+          description: 전체 페이지 수
+        page:
+          type: number
+          description: 현재 페이지 번호
+        totalElements:
+          type: number
+          description: 전체 게시글 개수
+    api-logs-accesss-1618614299:
+      type: object
+      properties:
+        logAccessInfos:
+          required:
+          - content
+          - empty
+          - first
+          - last
+          - number
+          - numberOfElements
+          - pageable
+          - size
+          - sort
+          - totalElements
+          - totalPages
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 번호
+            last:
+              type: boolean
+              description: 마지막 페이지 여부
+            numberOfElements:
+              type: number
+              description: 현재 페이지의 데이터 수
+            size:
+              type: number
+              description: 현재 페이지 크기
+            totalPages:
+              type: number
+              description: 총 페이지 수
+            pageable:
+              required:
+              - offset
+              - pageNumber
+              - pageSize
+              - paged
+              - sort
+              - unpaged
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 페이징 여부
+                pageNumber:
+                  type: number
+                  description: 현재 페이지 번호
+                offset:
+                  type: number
+                  description: 오프셋
+                pageSize:
+                  type: number
+                  description: 페이지 크기
+                unpaged:
+                  type: boolean
+                  description: 페이징 미적용 여부
+              description: 페이징 정보
+            first:
+              type: boolean
+              description: 첫 번째 페이지 여부
+            content:
+              type: array
+              description: 접근 로그 목록
+              items:
+                required:
+                - createdAt
+                - id
+                - memberId
+                - requestIp
+                - requestMethod
+                - requestPayload
+                - requestUrl
+                - responseBody
+                - responseStatus
+                type: object
+                properties:
+                  responseStatus:
+                    type: number
+                    description: 응답 상태
+            empty:
+              type: boolean
+              description: 페이지 비어 있는지 여부
+            totalElements:
+              type: number
+              description: 총 데이터 수
+    api-boards-id1054462394:
+      required:
+      - attachFileGroupId
+      - attachFiles
+      - content
+      - createMemberId
+      - createdAt
+      - id
+      - isPin
+      - title
+      - updatedAt
+      - viewCount
+      type: object
+      properties:
+        createdAt:
+          type: string
+          description: 작성일
+        isPin:
+          type: boolean
+          description: 상단 고정 여부
+        createMemberId:
+          type: string
+          description: 작성자
+        viewCount:
+          type: number
+          description: 조회수
+        id:
+          type: number
+          description: 게시글 ID
+        title:
+          type: string
+          description: 제목
+        attachFileGroupId:
+          type: number
+          description: 첨부파일 그룹 ID
+        attachFiles:
+          type: array
+          description: 첨부파일 목록
+          items:
+            required:
+            - id
+            - name
+            - path
+            - saveName
+            type: object
+            properties:
+              path:
+                type: string
+                description: 첨부파일 경로
+              name:
+                type: string
+                description: 첨부파일명
+              saveName:
+                type: string
+                description: 저장 파일명
+              id:
+                type: number
+                description: 첨부파일 ID
+        content:
+          type: string
+          description: 게시글 내용
+        updatedAt:
+          type: string
+          description: 수정일
+    api-logs-logins-380787922:
+      type: object
+      properties:
+        logLoginInfos:
+          required:
+          - content
+          - empty
+          - first
+          - last
+          - number
+          - numberOfElements
+          - pageable
+          - size
+          - sort
+          - totalElements
+          - totalPages
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 번호
+            last:
+              type: boolean
+              description: 마지막 페이지 여부
+            numberOfElements:
+              type: number
+              description: 현재 페이지의 데이터 수
+            size:
+              type: number
+              description: 현재 페이지 크기
+            totalPages:
+              type: number
+              description: 총 페이지 수
+            pageable:
+              required:
+              - offset
+              - pageNumber
+              - pageSize
+              - paged
+              - sort
+              - unpaged
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 페이징 여부
+                pageNumber:
+                  type: number
+                  description: 현재 페이지 번호
+                offset:
+                  type: number
+                  description: 오프셋
+                pageSize:
+                  type: number
+                  description: 페이지 크기
+                unpaged:
+                  type: boolean
+                  description: 페이징 미적용 여부
+                sort:
+                  type: object
+                  description: 정렬 정보(empty/sorted/unsorted)
+              description: 페이징 정보
+            sort:
+              type: object
+              description: 현재 페이지 정렬 정보(empty/sorted/unsorted)
+            first:
+              type: boolean
+              description: 첫 번째 페이지 여부
+            content:
+              type: array
+              description: 로그인로그 목록
+              items:
+                required:
+                - accessIp
+                - createdAt
+                - id
+                - memberId
+                - success
+                type: object
+                properties:
+                  createdAt:
+                    type: string
+                    description: 접속 일자
+                  accessIp:
+                    type: string
+                    description: 접속 IP
+                  success:
+                    type: boolean
+                    description: 로그인 성공 여부
+                  id:
+                    type: string
+                    description: 로그인로그 ID
+                  memberId:
+                    type: string
+                    description: 회원 ID
+            empty:
+              type: boolean
+              description: 페이지 비어 있는지 여부
+            totalElements:
+              type: number
+              description: 총 데이터 수
+    api-roles-id-1204452080:
+      required:
+      - roleInfo
+      type: object
+      properties:
+        roleInfo:
+          required:
+          - description
+          - id
+          - isActive
+          - level
+          - name
+          type: object
+          properties:
+            level:
+              type: number
+              description: 역할 레벨
+            isActive:
+              type: boolean
+              description: 활성화 여부
+          description: 역할 목록
+    api-messages1130025011:
+      required:
+      - enText
+      - id
+      - isActive
+      - koText
+      type: object
+      properties:
+        isActive:
+          type: boolean
+          description: 활성화 여부
+    api-roles-1594010409:
+      required:
+      - description
+      - id
+      - isActive
+      - level
+      - name
+      type: object
+      properties:
+        level:
+          type: number
+          description: 역할 레벨
+        isActive:
+          type: boolean
+          description: 활성화 여부
+    api-messages-id639141226:
+      type: object
+      properties:
+        messageInfo:
+          required:
+          - createMemberId
+          - createdAt
+          - enText
+          - id
+          - isActive
+          - koText
+          - updateMemberId
+          - updatedAt
+          type: object
+          properties:
+            id:
+              type: string
+              description: 메시지 ID
+    api-boards-id1551527500:
+      required:
+      - content
+      - id
+      - isPin
+      - title
+      - updateMemberId
+      type: object
+      properties:
+        isPin:
+          type: boolean
+          description: 상단 고정 여부
+        updateMemberId:
+          type: string
+          description: 수정자 ID
+        viewCount:
+          type: number
+          description: 조회수
+          nullable: true
+        id:
+          type: number
+          description: 게시글 ID
+        title:
+          type: string
+          description: 수정된 제목
+        content:
+          type: string
+          description: 수정된 게시글 내용
+    api-messages-94474456:
+      required:
+      - messageInfos
+      type: object
+      properties:
+        messageInfos:
+          required:
+          - content
+          - empty
+          - first
+          - last
+          - number
+          - numberOfElements
+          - pageable
+          - size
+          - sort
+          - totalElements
+          - totalPages
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 번호
+            numberOfElements:
+              type: number
+              description: 현재 페이지의 요소 수
+            size:
+              type: number
+              description: 페이지당 요소 수
+            last:
+              type: boolean
+              description: 현재 페이지가 마지막 페이지인지 여부
+            totalPages:
+              type: number
+              description: 전체 페이지 수
+            pageable:
+              required:
+              - offset
+              - pageNumber
+              - pageSize
+              - paged
+              - sort
+              - unpaged
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 페이지네이션이 활성화되었는지 여부
+                pageNumber:
+                  type: number
+                  description: 현재 페이지 번호
+                offset:
+                  type: number
+                  description: 현재 페이지의 오프셋
+                pageSize:
+                  type: number
+                  description: 페이지 크기
+                unpaged:
+                  type: boolean
+                  description: 페이지네이션이 비활성화되었는지 여부
+                sort:
+                  required:
+                  - empty
+                  - sorted
+                  - unsorted
+                  type: object
+                  properties:
+                    unsorted:
+                      type: boolean
+                      description: 정렬이 적용되지 않았는지 여부
+                    sorted:
+                      type: boolean
+                      description: 정렬이 적용되었는지 여부
+                    empty:
+                      type: boolean
+                      description: 정렬 정보가 비어 있는지 여부
+                  description: 정렬 정보
+              description: 페이지네이션 정보
+            sort:
+              required:
+              - empty
+              - sorted
+              - unsorted
+              type: object
+              properties:
+                unsorted:
+                  type: boolean
+                  description: 정렬이 적용되지 않았는지 여부
+                sorted:
+                  type: boolean
+                  description: 정렬이 적용되었는지 여부
+                empty:
+                  type: boolean
+                  description: 정렬 정보가 비어 있는지 여부
+              description: 페이지의 정렬 정보
+            first:
+              type: boolean
+              description: 현재 페이지가 첫 번째 페이지인지 여부
+            content:
+              type: array
+              description: 메시지 목록
+              items:
+                required:
+                - enText
+                - id
+                - isActive
+                - koText
+                type: object
+                properties:
+                  enText:
+                    type: string
+                    description: 메시지의 영어 텍스트
+                  koText:
+                    type: string
+                    description: 메시지의 한글 텍스트
+                  id:
+                    type: string
+                    description: 메시지 ID
+                  isActive:
+                    type: boolean
+                    description: 메시지가 활성화 상태인지 여부
+            empty:
+              type: boolean
+              description: 현재 페이지가 비어 있는지 여부
+            totalElements:
+              type: number
+              description: 전체 요소 수
+          description: 메시지 정보
+    api-codes-code-group-1429776464:
+      type: object
+      properties:
+        codeInfos:
+          required:
+          - content
+          - empty
+          - first
+          - last
+          - number
+          - numberOfElements
+          - pageable
+          - size
+          - sort
+          - totalElements
+          - totalPages
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 번호
+            last:
+              type: boolean
+              description: 마지막 페이지 여부
+            numberOfElements:
+              type: number
+              description: 현재 페이지의 데이터 수
+            size:
+              type: number
+              description: 현재 페이지 크기
+            totalPages:
+              type: number
+              description: 총 페이지 수
+            pageable:
+              required:
+              - offset
+              - pageNumber
+              - pageSize
+              - paged
+              - sort
+              - unpaged
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 페이징 여부
+                pageNumber:
+                  type: number
+                  description: 현재 페이지 번호
+                offset:
+                  type: number
+                  description: 현재 페이지의 시작 위치
+                pageSize:
+                  type: number
+                  description: 페이지 크기
+                unpaged:
+                  type: boolean
+                  description: 페이징 미적용 여부
+              description: 페이징 정보
+            first:
+              type: boolean
+              description: 첫 번째 페이지 여부
+            content:
+              type: array
+              description: 코드 목록
+              items:
+                required:
+                - createMemberId
+                - description
+                - id
+                - isActive
+                - name
+                - updateMemberId
+                type: object
+                properties:
+                  isActive:
+                    type: boolean
+                    description: 사용여부
+            empty:
+              type: boolean
+              description: 페이지가 비어 있는지 여부
+            totalElements:
+              type: number
+              description: 총 데이터 수
+    api-codes-id-1625036837:
+      type: object
+      properties:
+        codeInfo:
+          required:
+          - codeGroup
+          - createMemberId
+          - description
+          - id
+          - isActive
+          - messageId
+          - name
+          - sortOrder
+          - updateMemberId
+          type: object
+          properties:
+            sortOrder:
+              type: number
+              description: 정렬순서
+            isActive:
+              type: boolean
+              description: 사용여부
+    api-codes-id1537925074:
+      required:
+      - description
+      - isActive
+      - name
+      - sortOrder
+      type: object
+      properties: {}
+    api-codes-code-group-id-1530498498:
+      required:
+      - description
+      - isActive
+      - name
+      type: object
+      properties: {}
+    api-codes-code-group-id699755209:
+      type: object
+      properties:
+        codeInfo:
+          required:
+          - createMemberId
+          - description
+          - id
+          - isActive
+          - name
+          - updateMemberId
+          type: object
+          properties:
+            isActive:
+              type: boolean
+              description: 사용여부
+    api-members-page124482708:
+      type: object
+      properties:
+        memberInfos:
+          required:
+          - content
+          - empty
+          - first
+          - last
+          - number
+          - numberOfElements
+          - pageable
+          - size
+          - sort
+          - totalElements
+          - totalPages
+          type: object
+          properties:
+            number:
+              type: number
+              description: 현재 페이지 번호
+            last:
+              type: boolean
+              description: 마지막 페이지 여부
+            numberOfElements:
+              type: number
+              description: 현재 페이지의 데이터 수
+            size:
+              type: number
+              description: 현재 페이지 크기
+            totalPages:
+              type: number
+              description: 총 페이지 수
+            pageable:
+              required:
+              - offset
+              - pageNumber
+              - pageSize
+              - paged
+              - sort
+              - unpaged
+              type: object
+              properties:
+                paged:
+                  type: boolean
+                  description: 페이징 여부
+                pageNumber:
+                  type: number
+                  description: 현재 페이지 번호
+                offset:
+                  type: number
+                  description: 오프셋
+                pageSize:
+                  type: number
+                  description: 페이지 크기
+                unpaged:
+                  type: boolean
+                  description: 페이징 미적용 여부
+                sort:
+                  type: object
+                  description: 정렬 정보(empty/sorted/unsorted)
+              description: 페이징 정보
+            sort:
+              type: object
+              description: 현재 페이지 정렬 정보(empty/sorted/unsorted)
+            first:
+              type: boolean
+              description: 첫 번째 페이지 여부
+            content:
+              type: array
+              description: 멤버 목록
+              items:
+                required:
+                - createdAt
+                - email
+                - enName
+                - id
+                - isActive
+                - koName
+                - mustChangePassword
+                - phoneNumber
+                - updatedAt
+                type: object
+                properties:
+                  createdAt:
+                    type: string
+                    description: 생성일
+                  phoneNumber:
+                    type: string
+                    description: 전화번호
+                  enName:
+                    type: string
+                    description: 이름(영문)
+                  koName:
+                    type: string
+                    description: 이름(한글)
+                  mustChangePassword:
+                    type: boolean
+                    description: 비밀번호 변경 필요 여부
+                  id:
+                    type: string
+                    description: 사용자 ID
+                  isActive:
+                    type: boolean
+                    description: 활성화 여부
+                  email:
+                    type: string
+                    description: 이메일
+                  updatedAt:
+                    type: string
+                    description: 최종 수정일
+            empty:
+              type: boolean
+              description: 페이지 비어 있는지 여부
+            totalElements:
+              type: number
+              description: 총 데이터 수

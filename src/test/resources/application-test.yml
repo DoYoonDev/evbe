@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    defer-datasource-initialization: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+message:
+  path: src/test/resources
+
+security:
+  jwt:
+    secret-key: fblMifawD3BI3cLNosrVzWHP3Tfrp9oJ6sgtOzLl0Eg=
+    access-expiration-time: 900000
+    refresh-expiration-time: 2592000000

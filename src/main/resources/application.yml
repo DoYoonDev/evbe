@@ -1,0 +1,20 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+    import:
+      - classpath:config/local/config.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - classpath:config/dev/config.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+    import:
+      - classpath:config/docker/config.yml

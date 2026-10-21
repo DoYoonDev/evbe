@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://evolve-db.c9ckmiq6qtf0.ap-northeast-2.rds.amazonaws.com:5432/evolve_db
+    username: developer
+    password: developer
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    defer-datasource-initialization: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    schemas: flyway_schema
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+message:
+  path: DEV_MESSAGE_PATH
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET_KEY}
+    access-expiration-time: 10m
+    refresh-expiration-time: 30m

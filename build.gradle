@@ -81,6 +81,9 @@ dependencies {
     // oracle
     runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
     implementation 'org.flywaydb:flyway-database-oracle:11.1.0'
+
+    // SSO: 외부 인증 서버의 JWT 검증
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 }
 
 // swagger

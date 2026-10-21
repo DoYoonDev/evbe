@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1522/FREEPDB1
+    username: EVOLVE
+    password: ${ORACLE_DB_PASSWORD}
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  flyway:
+    enabled: true
+    locations: classpath:db/oracle
+    baseline-on-migrate: false
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  port: 8080
+
+message:
+  path: C:/Users/dlwhd/OneDrive/Desktop/ev/evfe/src/locales
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET_KEY}
+    access-expiration-time: 2d
+    refresh-expiration-time: 2d
